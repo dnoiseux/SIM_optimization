@@ -1,0 +1,53 @@
+Steps
+
+use the rateplancost.xlsx file that contains:
+'rate plan name' in column A
+'rate plan cost' in column B
+'rate plan size' in MB in column C
+'rate plan type' in column D
+'overage rate per MB' in column E
+'rate plan Rate_plan_name_alt1' in column E
+'rate plan Rate_plan_name_alt2' in column F
+
+use the export.xlsx file that contains:
+Row 1 contains the column names
+Each line  represents a different account
+
+In export.xlsx remove commas from 'Cycle to Date Usage (MB)' and convert to numbers
+
+If a line in export.xlsx has an 'Activated SIM status' different than 'Activated' and has a 'Cycle to Date Usage (MB)' greater than 0, raise a warning with ICCID, SIM status and Cycle to Date Usage (MB)
+
+Remove columns A, J, K and L in export.xlsx 
+
+Remove all line where 'SIM status' is not 'Activated' in export.xlsx 
+
+Join the export.xlsx and rateplancost.xlsx base on the 'current rate plan' and 'rate plan name'
+
+Perform cost calculations based on the rate plans, the cost for each rate plan is not per MB of usage but the monthly cost for the plan of each account, so to get the total cost, you need to multiply the number of account for each rate plan by its cost and show me a summary, also provide a grand total of Number of Accounts and Total Cost
+
+XXX Add new columns to each account based on the 'current rate plan' to associate the 'rate plan cost' and a 'rate plan size' where 1GB rate plan is equivalent to 1000MB 
+
+create a bucket for each 'rate plan' keeping CAN and ROAM as two separate groups
+Assign accounts to buckets based on 'rate plan name'
+Show me a summary the sum of the 'Rate Plan Size (MB) and the sum of 'Cycle to Date Usage (MB)' per bucket
+
+
+optimize the total cost by adjusting the 'current rate plan' of each account and moving them to another bucket as necessary
+with the following rules: The sum of the 'Cycle to Date Usage (MB)' of the accounts in a bucket can not exceed 80% of Sum of Rate Plan Size (MB) available for each bucket
+
+*** the optimization should not only move accounts out of overused buckets but also ensure that the remaining accounts in those buckets do not exceed a certain percentage of the total bucket capacity.
+*** accounts in underutilized buckets (like zero usage) should be moved to more appropriate buckets.
+If the The sum of the 'Cycle to Date Usage (MB)' of the accounts in a bucket exceeds 90% of Sum of Rate Plan Size (MB) available for each bucket, The overage rate per MB is the additional cost per MB that exeeds the limit of a bucket.
+
+Provide the result in and excel spreadsheet showing the ICCID, the Cycle to Date Usage (MB), the initial rate plan, the initial rate plan cost and news column representing the new rate plan name the the account should be moved to, the new rate plan cost, if the account remains with the same rate plan still show the rate plan
+
+Show me the total cost before and after optimization
+
+Show me a summary of the buckets with the plan name, number of accounts, total Cycle to Date Usage (MB), bucket capacity in MB and % filled and initial rate plan cost and new rate plan cost per bucket. Subtotal per bucket
+
+
+
+
+
+
+
